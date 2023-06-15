@@ -1,8 +1,8 @@
 import { Badge, Box, Button, Center, Text, Pressable } from "native-base"
 import { FC, Fragment, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { AppLoader, Icon } from "@spazfeed/components"
-import { network } from "@spazfeed/services"
+import { AppLoader, Icon } from "@imolla/components"
+import { network } from "@imolla/services"
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import ClientModal from "./Modal"
 

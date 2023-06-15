@@ -4,8 +4,8 @@ import "assets/style.scss"
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import ThemeProvider from "@spazfeed/layout";
-import configureStore from '@spazfeed/redux/store';
+import ThemeProvider from "@imolla/layout";
+import configureStore from '@imolla/redux/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/integration/react";
 

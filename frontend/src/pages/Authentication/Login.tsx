@@ -11,9 +11,9 @@ import {
 } from "native-base";
 import React, { FC, useEffect, useState } from "react";
 import { Dimensions } from "react-native";
-import InputWithLabel from "@spazfeed/components/InputBox/InputWithLabel";
-import { useAppDispatch, useAppSelector } from "@spazfeed/hooks";
-import { loginAction } from "@spazfeed/redux/actions/Authorization";
+import InputWithLabel from "@imolla/components/InputBox/InputWithLabel";
+import { useAppDispatch, useAppSelector } from "@imolla/hooks";
+import { loginAction } from "@imolla/redux/actions/Authorization";
 import { useNavigate } from "react-router-dom";
 
 interface LoginPageTypes { }

@@ -21,7 +21,7 @@ public:
 
         if (database.select_record<User>("users", {{"username", "=", "admin"}}, {"id"}).id == 0)
         {
-            int user_id = database.insert_record("users", {{"email", "admin@spazfeed.com"}, {"password", utils::createMd5Hash("admin")}, {"username", "admin"}, {"fullname", "Administrator"}, {"status", "1"}, {"created_at", utils::now()}, {"updated_at", utils::now()}});
+            int user_id = database.insert_record("users", {{"email", "admin@imolla.com"}, {"password", utils::createMd5Hash("admin")}, {"username", "admin"}, {"fullname", "Administrator"}, {"status", "1"}, {"created_at", utils::now()}, {"updated_at", utils::now()}});
             database.insert_record("roles", {{"user_id", std::to_string(user_id)}, {"role", "admin"}, {"created_at", utils::now()}});
         }
     }

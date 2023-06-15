@@ -8,7 +8,7 @@ import {
   MenuItemStyles,
 } from "react-pro-sidebar";
 import { Text, Badge, Button } from "native-base";
-import { Icon } from "@spazfeed/components";
+import { Icon } from "@imolla/components";
 
 type Theme = "light" | "dark";
 

@@ -1,4 +1,4 @@
-import { getColorFromComponent } from "@spazfeed/services"
+import { getColorFromComponent } from "@imolla/services"
 import { useColorMode, useTheme } from "native-base"
 import { FC } from "react"
 import { AiFillWarning } from "react-icons/ai"

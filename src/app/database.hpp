@@ -126,19 +126,19 @@ public:
         json aaa = execQuery(query);
     }
     template <typename T>
-    T select_record(std::string table_name, const std::vector<DbConditionObject> conditions, std::vector<std::string> select = {"*"}, std::string other = "")
+    T select_record(std::string table_name, const std::vector<DbConditionObject> conditions, std::vector<std::string> select = {"*"}, std::string other = "", std::string joinQuery = "")
     {
         T m;
-        auto content = query<T>(createSelectSqlQuery(table_name, conditions, utils::strVectorToString(select), other + ""));
+        auto content = query<T>(createSelectSqlQuery(table_name, conditions, utils::strVectorToString(select), other + "", joinQuery));
         if (content.size() == 0)
             return m;
         m = content[0];
         return m;
     }
     template <typename T>
-    auto select_records(std::string table_name, const std::vector<DbConditionObject> conditions, std::vector<std::string> select = {"*"}, std::string other = "")
+    auto select_records(std::string table_name, const std::vector<DbConditionObject> conditions, std::vector<std::string> select = {"*"}, std::string other = "", std::string joinQuery = "")
     {
-        return query<T>(createSelectSqlQuery(table_name, conditions, utils::strVectorToString(select), other + ""));
+        return query<T>(createSelectSqlQuery(table_name, conditions, utils::strVectorToString(select), other + "", joinQuery));
     }
 
 private:

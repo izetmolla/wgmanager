@@ -423,10 +423,10 @@ namespace utils
         query << " " + end_query;
         return query.str();
     }
-    std::string createSelectSqlQuery(std::string table, const std::vector<DbConditionObject> conditions, std::string attributes = "*", std::string end_query = "")
+    std::string createSelectSqlQuery(std::string table, const std::vector<DbConditionObject> conditions, std::string attributes = "*", std::string end_query = "", std::string joinQuery = "")
     {
         std::stringstream query;
-        query << "SELECT " << attributes << " FROM " << table << "";
+        query << "SELECT " << attributes << " FROM " << table << " " << joinQuery << " ";
 
         if (!conditions.empty())
         {

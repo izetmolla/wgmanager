@@ -2,8 +2,8 @@ import { FC, useState } from "react"
 import { UserTypes } from "."
 import { useNavigate } from "react-router-dom"
 import { Box, Text, Button, Switch } from "native-base"
-import InputWithLabel from "@spazfeed/components/InputBox/InputWithLabel"
-import { network } from "@spazfeed/services"
+import InputWithLabel from "@imolla/components/InputBox/InputWithLabel"
+import { network } from "@imolla/services"
 
 interface NewUserProps { }
 const NewUser: FC<NewUserProps> = () => {

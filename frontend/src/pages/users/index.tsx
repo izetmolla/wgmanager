@@ -1,8 +1,8 @@
 import { Box, Button, Center, Pressable, Text } from "native-base"
 import { FC, Fragment, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { AppLoader, Icon } from "@spazfeed/components"
-import { network } from "@spazfeed/services"
+import { AppLoader, Icon } from "@imolla/components"
+import { network } from "@imolla/services"
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import UserModal from "./UserModal"
 
@@ -89,7 +89,7 @@ const UsersPage: FC<UsersPageInterface> = (): JSX.Element => {
                                 {data?.map((item, i) => (
                                     <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                         <TableCell><b>{item.id}</b></TableCell>
-                                        <TableCell align="left"><Link style={{ textDecoration: "none" }} to={"edit/:" + item.id} state={item}>{item.fullname}</Link></TableCell>
+                                        <TableCell align="left"><Link style={{ textDecoration: "none" }} to={"edit/" + item.id} state={item}>{item.fullname}</Link></TableCell>
                                         <TableCell align="left">0</TableCell>
                                         <TableCell align="left">0</TableCell>
                                         <TableCell align="left">0</TableCell>

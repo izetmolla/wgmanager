@@ -4,8 +4,8 @@ import {
 } from "react-router-dom";
 
 import LoginPage from "pages/Authentication/Login";
-import PublicRouter from "@spazfeed/layout/Public";
-import AppLayout from "@spazfeed/layout/AppLayout";
+import PublicRouter from "@imolla/layout/Public";
+import AppLayout from "@imolla/layout/AppLayout";
 import { lazy } from "react";
 
 const DashboardPage = lazy(() => import("pages/dashboard"));

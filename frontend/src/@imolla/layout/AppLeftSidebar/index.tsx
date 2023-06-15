@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Box, ScrollView, useColorMode, useTheme } from "native-base";
-import { } from "@spazfeed/types";
+import { } from "@imolla/types";
 import { useLayout } from "..";
 import { useWindowDimensions } from "react-native";
 

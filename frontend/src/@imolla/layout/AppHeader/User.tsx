@@ -2,8 +2,8 @@ import { Box, Popover, Button, Center, Pressable } from "native-base";
 import { VStack, Select, CheckIcon, Text } from "native-base";
 import { View } from "react-native"
 import React, { FC, useState } from "react";
-import AppPopover from "@spazfeed/components/AppPopover";
-import { Icon } from "@spazfeed/components";
+import AppPopover from "@imolla/components/AppPopover";
+import { Icon } from "@imolla/components";
 
 
 interface ClickbuttonTypes {

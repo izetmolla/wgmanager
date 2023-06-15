@@ -5,7 +5,7 @@ import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import Common from "../slices/Common";
 import Authorization, { logOut, setAccessToken } from "../slices/Authorization";
-import { network, refreshAccessToken, Notification, setAuthToken } from "@spazfeed/services";
+import { network, refreshAccessToken, Notification, setAuthToken } from "@imolla/services";
 
 const rootReducer = combineReducers({
   common: persistReducer({ key: "common", storage }, Common),

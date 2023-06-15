@@ -1,5 +1,5 @@
 import { RootState } from "../store";
-import { AuthorizationTypes } from "@spazfeed/types";
+import { AuthorizationTypes } from "@imolla/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 // Define a type for the slice state

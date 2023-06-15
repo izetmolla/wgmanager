@@ -12,8 +12,8 @@ import { ThemeConsumer, useLayout } from ".";
 import { Navigate, Outlet } from "react-router-dom";
 import LeftSidebar from "./AppLeftSidebar";
 import AppHeader from "./AppHeader";
-import { AppLoader } from "@spazfeed/components";
-import { useAppSelector } from "@spazfeed/hooks";
+import { AppLoader } from "@imolla/components";
+import { useAppSelector } from "@imolla/hooks";
 
 interface AppLayoutInterface {}
 

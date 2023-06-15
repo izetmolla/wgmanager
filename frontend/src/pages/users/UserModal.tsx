@@ -1,5 +1,5 @@
-import { AppLoader } from "@spazfeed/components"
-import { network } from "@spazfeed/services"
+import { AppLoader } from "@imolla/components"
+import { network } from "@imolla/services"
 import { Modal, Box, Text, Button } from "native-base"
 import { FC, useEffect, useState } from "react"
 

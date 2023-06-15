@@ -15,6 +15,7 @@ void define_routes()
     CROW_ROUTE(app, "/api/clients/create").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(ClientController::newCLient);
     CROW_ROUTE(app, "/api/clients/delete").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(ClientController::deleteClient);
     CROW_ROUTE(app, "/api/users").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(UserController::usersList);
+    CROW_ROUTE(app, "/api/users/single").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(UserController::singleUser);
     CROW_ROUTE(app, "/api/users/adduser").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(UserController::addUser);
     CROW_ROUTE(app, "/api/users/delete").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(UserController::deleteUser);
     CROW_ROUTE(app, "/api/settings").methods("POST"_method).CROW_MIDDLEWARES(app, AuthorizationMiddleweare)(GeneralController::getSettings);

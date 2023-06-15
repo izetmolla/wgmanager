@@ -1,4 +1,4 @@
-import network from "@spazfeed/services/network";
+import network from "@imolla/services/network";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   authorizeUser,

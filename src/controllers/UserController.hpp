@@ -63,6 +63,31 @@ public:
         database.insert_record("roles", {{"user_id", std::to_string(user_id)}, {"role", body["role"].get<std::string>()}, {"created_at", utils::now()}, {"updated_at", utils::now()}});
         return utils::jsonSuccessResponse({{"message", "User added"}, {"user_id", std::to_string(user_id)}});
     }
+    static crow::response singleUser(const crow::request &req)
+    {
+        json body = utils::getBody(req.body);
+        ValidationResponse error = utils::bodyValidation(body, {{"id", {{"type", "string"}, {"min", "1"}, {"max", "15"}}}});
+        if (error.status)
+            return utils::jsonErrorResponse(error.message, error.path);
+        if (!utils::isAdmin(utils::jsonArrayToVector(req.get_header_value("roles"))))
+            return utils::jsonErrorResponse("You are not Allowed to do this action");
+        User user = database.select_record<User>("users", {{"id", "=", body["id"].get<std::string>()}}, {"users.*", "(SELECT json_group_array(b.role) FROM roles b where b.user_id=users.id) as roles"});
+
+        if (user.id == 0)
+            return utils::jsonErrorResponse("User not found");
+        return utils::jsonSuccessResponse({
+            {"id", user.id},
+            {"username", user.username},
+            {"fullname", user.fullname},
+            {"email", user.email},
+            {"status", user.status},
+            {"roles", json::parse(user.roles)},
+            {"connections", user.connections},
+            {"clients", user.clients},
+            {"created_at", user.created_at},
+            {"updated_at", user.updated_at},
+        });
+    }
 
     json getUsersList(Pagination pagination)
     {
