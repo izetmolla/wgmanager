@@ -1,0 +1,7 @@
+Package: wgmanager
+Version: 0.0.1
+Maintainer: Izet Molla <contact@izetmolla.com>
+Architecture: amd64
+Depends: wireguard
+Homepage: https://izetmlla.com
+Description: A program that manage wireguard server

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Execute custom commands after installation
+echo "Custom commands after installation"
+
+# apt install resolvconf iproute2
+# Restart a service
+# service myservice restart
+systemctl daemon-reload
+systemctl enable wgmanager
+systemctl start wgmanager
+systemctl restart wgmanager

@@ -1,0 +1,107 @@
+#!/bin/bash
+# https://earthly.dev/blog/creating-and-hosting-your-own-deb-packages-and-apt-repo/
+
+package_name="wgmanager"
+version="0.0.1"
+release_number="1"
+architecture="amd64" #$(uname -m)
+ostype=$(grep "^ID=" /etc/os-release | cut -f 2 -d '=')
+osrelease="$(lsb_release -s -r)"
+full_name=$package_name"_"$version"-"$release_number"_"$architecture
+package_storage="/home/imolla/apt_deb/wgmanager/"$ostype"-"$osrelease
+
+rm -rf product/$full_name
+rm -rf product/$full_name.deb
+mkdir -p product/$full_name
+
+mkdir -p product/$full_name/etc/systemd/system/
+mkdir -p product/$full_name/etc/wgmanager
+
+cp deb/wgmanager.service product/$full_name/etc/systemd/system/
+cp -r ./build/public_html product/$full_name/etc/wgmanager/
+cp -r ./build/wgmanager product/$full_name/etc/wgmanager/
+
+mkdir -p product/$full_name/DEBIAN
+cp deb/postinst product/$full_name/DEBIAN/
+cp deb/preinst product/$full_name/DEBIAN/
+
+echo "Package: wgmanager
+Version: $version
+Maintainer: Izet Molla <contact@izetmolla.com>
+Architecture: amd64
+Depends: wireguard
+Homepage: https://izetmlla.com
+Description: A program that manage wireguard server" \
+> product/$full_name/DEBIAN/control
+
+dpkg --build product/$full_name
+# dpkg-deb --info product/$full_name.deb
+# dpkg-deb --contents product/$full_name.deb
+
+
+if [ -d "$package_storage" ]; then
+    mkdir -p $package_storage
+fi
+
+
+
+
+# Let’s start with creating a directory to hold our debs:
+mkdir -p $package_storage/apt-repo/pool/main/
+
+
+# Then copy our deb(s) into this directory:
+cp product/$full_name.deb $package_storage/apt-repo/pool/main/.
+
+mkdir -p $package_storage/apt-repo/dists/stable/main/binary-amd64
+
+
+
+# Next, we will generate a Packages file, which will contain a list of all available packages in this repository. We will use the dpkg-scanpackages program to generate it, by running:
+
+cd $package_storage/apt-repo
+dpkg-scanpackages --arch amd64 pool/ > dists/stable/main/binary-amd64/Packages
+
+# It’s also good practice to compress the packages file, as apt will favour downloading compressed data whenever available. Let’s do this by running:
+
+cat dists/stable/main/binary-amd64/Packages | gzip -9 > dists/stable/main/binary-amd64/Packages.gz
+
+
+echo '#!/bin/sh
+set -e
+
+do_hash() {
+    HASH_NAME=$1
+    HASH_CMD=$2
+    echo "${HASH_NAME}:"
+    for f in $(find -type f); do
+        f=$(echo $f | cut -c3-) # remove ./ prefix
+        if [ "$f" = "Release" ]; then
+            continue
+        fi
+        echo " $(${HASH_CMD} ${f}  | cut -d" " -f1) $(wc -c $f)"
+    done
+}
+
+cat << EOF
+Origin: Wireguard Manager
+Label: Wgmanager
+Suite: stable
+Codename: stable
+Version: '$version'
+Architectures: amd64 arm64 arm7
+Components: main
+Description: An wgmanager software repository
+Date: $(date -Ru)
+EOF
+do_hash "MD5Sum" "md5sum"
+do_hash "SHA1" "sha1sum"
+do_hash "SHA256" "sha256sum"
+' > $package_storage/generate-release.sh && chmod +x $package_storage/generate-release.sh
+
+# Next let’s run the generate-release.sh script with:
+
+cd $package_storage/apt-repo/dists/stable
+$package_storage/generate-release.sh > Release
+
+

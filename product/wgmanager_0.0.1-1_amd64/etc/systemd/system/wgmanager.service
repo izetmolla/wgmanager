@@ -1,0 +1,9 @@
+[Unit]
+Description=Wireguard Manager
+
+[Service]
+ExecStart=/etc/wgmanager/wgmanager
+WorkingDirectory=/etc/wgmanager
+
+[Install]
+WantedBy=multi-user.target

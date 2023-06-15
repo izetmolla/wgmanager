@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Execute custom commands after installation
+echo "Custom commands before installation"
+
+
+# apt update && apt upgrade -y
+# apt install -y systemctl wireguard wireguard-tools wireguard-dkms wireguard-tools iptables-persistent 
+# apt install qrencode vnstat jq iftop -y
+systemctl stop wgmanager
+rm -rf /etc/systemd/system/wgmanager.service
+systemctl daemon-reload
